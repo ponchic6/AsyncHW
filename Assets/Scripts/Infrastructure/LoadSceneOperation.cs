@@ -24,5 +24,11 @@ public class LoadSceneOperation : ILoadingOperation
 
         GameObject quad = Object.Instantiate(_quadLoadingOperation.QuadPrefab);
         quad.GetComponent<MeshRenderer>().material.mainTexture = _imageLoadingOperatino.Texture;
+        HighLoadedOperation highLoadedOperation = quad.GetComponent<HighLoadedOperation>();
+        await Task.Run(() =>
+        {
+            highLoadedOperation.Fibonacci(43);
+        });
+        Debug.Log("Операция завершена");
     }
 }
